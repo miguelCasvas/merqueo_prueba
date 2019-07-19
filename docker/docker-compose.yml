@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  servicio_mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=merqueo
+      - MYSQL_ROOT_PASSWORD=root_acceso
+      - MYSQL_USER=user_merqueo
+      - MYSQL_PASSWORD=merqueo_4cc3s0*/
+    volumes:
+      - ./volumenes/mysql:/var/lib/mysql
+    networks:
+      red_merqueo_network:
+        ipv4_address: 172.28.1.1
+    ports:
+      - 3307:3306
+
+  servicio_php56:
+    image: php:5.6-apache
+    volumes:
+      - /var/www/html/:/var/www/html
+    networks:
+      red_merqueo_network:
+        ipv4_address: 172.28.1.2
+    ports:
+        - 8083:80
+    tty: true
+
+networks:
+  red_merqueo_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
