@@ -13,9 +13,25 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
+Route::group(['prefix' => 'v1'], function(){
 
-Route::group(['prefix' => 'products'], function(){
 
-    Route::get('all', function(){ return response()->json(['data' => 'demo']); });
+    // PRODUCTOS
+
+    Route::group(['prefix' => 'product'], function(){
+
+        Route::post('load', 'ProductsController@load');
+        Route::get('all', 'ProductsController@all');
+        Route::get('{id}', 'ProductsController@find');
+
+    });
+
+    Route::group(['prefix' => 'provider'], function(){
+
+        Route::post('load', 'ProvidersController@load');
+        Route::get('all', 'ProvidersController@all');
+        Route::get('{id}', 'ProvidersController@find');
+
+    });
 
 });

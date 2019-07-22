@@ -19,14 +19,16 @@ services:
   servicio_php56:
     image: php:5.6-apache
     volumes:
-      - /var/www/html/:/var/www/html
+      - C:/var/www/html/:/var/www/html
     networks:
       red_merqueo_network:
         ipv4_address: 172.28.1.2
     ports:
         - 8083:80
-    tty: true
-
+    hostname: pmerqueo.com
+    command: cp /var/www/html/p_merqueo/docker/merqueo.conf /etc/apache2/sites-enabled/merqueco.conf
+    command: chmod 777 /etc/apache2/sites-enabled/merqueco.conf &&
+    command: service apache2 start
 networks:
   red_merqueo_network:
     ipam:

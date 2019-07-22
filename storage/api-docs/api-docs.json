@@ -1,0 +1,152 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API .:: MERQUEO ::. ",
+        "description": "Descripci\u00f3n de recursos disponibles en el API",
+        "contact": {
+            "email": "miguelcasvas@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "pmerqueo.com:8080",
+    "basePath": "/api/v1",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/orders/all": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Mostrar listado completo de productos",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los productos."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/product/load": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Cargar productos al inventario",
+                "responses": {
+                    "200": {
+                        "description": "Generar cargue correcto de los productos."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/product/all": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Mostrar listado completo de productos en el inventario",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los productos."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/product/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Mostrar datos de un producto especifico",
+                "operationId": "find",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "identificador del producto",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfull"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/provider/load": {
+            "post": {
+                "tags": [
+                    "Providers"
+                ],
+                "summary": "Cargar proveedores al sistema",
+                "responses": {
+                    "200": {
+                        "description": "Generar cargue correcto de los proveedores."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/provider/all": {
+            "get": {
+                "tags": [
+                    "Providers"
+                ],
+                "summary": "Mostrar listado completo de proveedores en el sistema",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los proveedores registrados."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/provider/{id}": {
+            "get": {
+                "tags": [
+                    "Providers"
+                ],
+                "summary": "Mostrar datos de un provedor especifico",
+                "operationId": "find",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "identificador del proveedor",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfull"
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
