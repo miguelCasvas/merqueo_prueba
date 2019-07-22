@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ProductModel extends Model
 {
@@ -15,7 +16,12 @@ class ProductModel extends Model
     {
 
         $dataSave = array();
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
         $this->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+
         $data = current($data);
 
         foreach ($data as $datum) {

@@ -13,7 +13,7 @@ class ProvidersController extends Controller
      * @SWG\Post(
      *     path="/provider/load",
      *     summary="Cargar proveedores al sistema",
-     *     tags={"Providers"},
+     *     tags={"2. Providers"},
      *
      *     @SWG\Response(
      *         response=200,
@@ -49,7 +49,7 @@ class ProvidersController extends Controller
      * @SWG\Get(
      *     path="/provider/all",
      *     summary="Mostrar listado completo de proveedores en el sistema",
-     *     tags={"Providers"},
+     *     tags={"2. Providers"},
      *     @SWG\Response(
      *         response=200,
      *         description="Mostrar todos los proveedores registrados."
@@ -70,7 +70,7 @@ class ProvidersController extends Controller
      * @SWG\Get(
      *     path="/provider/{id}",
      *     summary="Mostrar datos de un provedor especifico",
-     *     tags={"Providers"},
+     *     tags={"2. Providers"},
      *     operationId="find",
      *     @SWG\Parameter(
      *         name="id",

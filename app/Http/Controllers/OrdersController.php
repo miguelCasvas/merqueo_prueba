@@ -9,7 +9,7 @@ class OrdersController extends Controller
     /**
      * @SWG\Get(
      *     path="/orders/all",
-     *     tags={"Orders"},
+     *     tags={"3. Orders"},
      *     summary="Mostrar listado completo de productos",
      *     @SWG\Response(
      *         response=200,

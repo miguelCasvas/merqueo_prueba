@@ -30,7 +30,7 @@ class ProductsController extends Controller
      * @SWG\Post(
      *     path="/product/load",
      *     summary="Cargar productos al inventario",
-     *     tags={"Products"},
+     *     tags={"1. Products"},
      *
      *     @SWG\Response(
      *         response=200,
@@ -65,7 +65,7 @@ class ProductsController extends Controller
      * @SWG\Get(
      *     path="/product/all",
      *     summary="Mostrar listado completo de productos en el inventario",
-     *     tags={"Products"},
+     *     tags={"1. Products"},
      *     @SWG\Response(
      *         response=200,
      *         description="Mostrar todos los productos."
@@ -86,7 +86,7 @@ class ProductsController extends Controller
      * @SWG\Get(
      *     path="/product/{id}",
      *     summary="Mostrar datos de un producto especifico",
-     *     tags={"Products"},
+     *     tags={"1. Products"},
      *     operationId="find",
      *     @SWG\Parameter(
      *         name="id",

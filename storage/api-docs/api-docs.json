@@ -8,7 +8,7 @@
         },
         "version": "1.0.0"
     },
-    "host": "pmerqueo.com:8080",
+    "host": "pmerqueo.com:8083",
     "basePath": "/api/v1",
     "schemes": [
         "http",
@@ -18,7 +18,7 @@
         "/orders/all": {
             "get": {
                 "tags": [
-                    "Orders"
+                    "3. Orders"
                 ],
                 "summary": "Mostrar listado completo de productos",
                 "responses": {
@@ -34,7 +34,7 @@
         "/product/load": {
             "post": {
                 "tags": [
-                    "Products"
+                    "1. Products"
                 ],
                 "summary": "Cargar productos al inventario",
                 "responses": {
@@ -50,7 +50,7 @@
         "/product/all": {
             "get": {
                 "tags": [
-                    "Products"
+                    "1. Products"
                 ],
                 "summary": "Mostrar listado completo de productos en el inventario",
                 "responses": {
@@ -66,7 +66,7 @@
         "/product/{id}": {
             "get": {
                 "tags": [
-                    "Products"
+                    "1. Products"
                 ],
                 "summary": "Mostrar datos de un producto especifico",
                 "operationId": "find",
@@ -92,7 +92,7 @@
         "/provider/load": {
             "post": {
                 "tags": [
-                    "Providers"
+                    "2. Providers"
                 ],
                 "summary": "Cargar proveedores al sistema",
                 "responses": {
@@ -108,7 +108,7 @@
         "/provider/all": {
             "get": {
                 "tags": [
-                    "Providers"
+                    "2. Providers"
                 ],
                 "summary": "Mostrar listado completo de proveedores en el sistema",
                 "responses": {
@@ -124,7 +124,7 @@
         "/provider/{id}": {
             "get": {
                 "tags": [
-                    "Providers"
+                    "2. Providers"
                 ],
                 "summary": "Mostrar datos de un provedor especifico",
                 "operationId": "find",
