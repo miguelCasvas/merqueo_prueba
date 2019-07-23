@@ -40,4 +40,48 @@ class ProductModel extends Model
         return true;
     }
 
+    public function getProductsFromInventary()
+    {
+
+        $columns = [
+          't1.idProduct',
+          't1.nameProduct',
+          't2.stock AS stockOfProductFromInventary'
+        ];
+
+        $this->table = 'products AS t2';
+
+        return
+
+        $this
+            ->select($columns)
+            ->leftJoin('relOrdersProducts AS t1', 't1.idProduct', '=', 't2.id');
+
+
+    }
+
+    /**
+     * Productos menos vendidos
+     */
+    public function getLessSoldProducts()
+    {
+
+        $modelOrder = new OrdersModel();
+        $modelOrder->setTable('orders AS t0');
+        $columns = [
+            't1.idProduct',
+            't1.nameProduct',
+            't1.quantity'
+        ];
+
+        return
+            $modelOrder
+                ->select($columns)
+                ->join('relOrdersProducts AS t1', 't0.id','=', 't1.idOrder')
+                ->join('products AS t2', 't1.idProduct', '=', 't2.id')
+                ->where('t0.deliveryDate', '=', '2019-03-01')
+                ->orderBy('t1.quantity', 'ASC');
+
+
+    }
 }

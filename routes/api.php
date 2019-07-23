@@ -42,4 +42,13 @@ Route::group(['prefix' => 'v1'], function(){
 
     });
 
+
+    Route::group(['prefix' => 'report'], function(){
+
+        Route::get('A', 'ReportsController@reportA');
+        Route::get('B', 'ReportsController@reportB');
+        Route::get('C', 'ReportsController@reportC');
+
+    });
+
 });
