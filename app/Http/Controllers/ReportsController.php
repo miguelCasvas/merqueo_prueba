@@ -32,7 +32,6 @@ class ReportsController extends Controller
 
     }
 
-
     /**
      * @SWG\Get(
      *     path="/report/B",
@@ -54,7 +53,6 @@ class ReportsController extends Controller
         return response()->json(['data' => 'No se definen transportadores en el planteamiento del problema!']);
 
     }
-
 
     /**
      * @SWG\Get(
@@ -79,13 +77,19 @@ class ReportsController extends Controller
         return response()->json($data);
     }
 
-
     /**
      * @SWG\Get(
      *     path="/report/D",
      *     summary="Dado el Id de un pedido, ver que producos y que cantidad pueden ser alistados segun inventario y cuales abastecidos por proveedores",
      *     tags={"4. Reports"},
      *
+     *     @SWG\Parameter(
+     *        name="idOrden",
+     *        in="query",
+     *        description="Identificador de la orden",
+     *        required=false,
+     *        type="integer"
+     *     ),
      *     @SWG\Response(
      *         response=200,
      *         description="2do Informe solicitado"
@@ -98,10 +102,13 @@ class ReportsController extends Controller
      */
     public function reportD(Request $request)
     {
+        $model = new ProductModel();
+        $idOrder = $request->get('idOrden');
 
+        $data = $model->getProductsSupplyByProvider($idOrder)->get()->toArray();
+        return response()->json($data);
 
     }
-
 
     /**
      * @SWG\Get(
@@ -121,7 +128,10 @@ class ReportsController extends Controller
      */
     public function reportE(Request $request)
     {
+        $model = new ProductModel();
 
+        $data = $model->getInventaryAfterSoly()->get()->toArray();
+        return response()->json($data);
 
     }
 
@@ -144,6 +154,9 @@ class ReportsController extends Controller
     public function reportF(Request $request)
     {
 
+        $modelProducts = new ProductModel();
+        $data = $modelProducts->getMostSolledProducts()->get()->toArray();
+        return response()->json($data);
 
     }
 

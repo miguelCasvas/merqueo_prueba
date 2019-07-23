@@ -9,15 +9,10 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
 Route::group(['prefix' => 'v1'], function(){
 
 
     // PRODUCTOS
-
     Route::group(['prefix' => 'product'], function(){
 
         Route::post('load', 'ProductsController@load');
@@ -26,6 +21,7 @@ Route::group(['prefix' => 'v1'], function(){
 
     });
 
+    // PROVEEDORES
     Route::group(['prefix' => 'provider'], function(){
 
         Route::post('load', 'ProvidersController@load');
@@ -35,6 +31,7 @@ Route::group(['prefix' => 'v1'], function(){
     });
 
 
+    // ORDENES
     Route::group(['prefix' => 'order'], function(){
 
         Route::post('load', 'OrdersController@load');
@@ -42,12 +39,15 @@ Route::group(['prefix' => 'v1'], function(){
 
     });
 
-
+    // REPORTES
     Route::group(['prefix' => 'report'], function(){
 
         Route::get('A', 'ReportsController@reportA');
         Route::get('B', 'ReportsController@reportB');
         Route::get('C', 'ReportsController@reportC');
+        Route::get('D', 'ReportsController@reportD');
+        Route::get('E', 'ReportsController@reportE');
+        Route::get('F', 'ReportsController@reportF');
 
     });
 

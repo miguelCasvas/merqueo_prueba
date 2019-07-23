@@ -217,6 +217,15 @@
                     "4. Reports"
                 ],
                 "summary": "Dado el Id de un pedido, ver que producos y que cantidad pueden ser alistados segun inventario y cuales abastecidos por proveedores",
+                "parameters": [
+                    {
+                        "name": "idOrden",
+                        "in": "query",
+                        "description": "Identificador de la orden",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "2do Informe solicitado"
