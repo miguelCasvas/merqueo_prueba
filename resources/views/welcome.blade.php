@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{config('app.name')}}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -66,30 +66,35 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    PRUEBA BACK .:: Merqueo ::.
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{asset('images/icono.png')}}" alt="" width="100" class="img-thumbnail">
+                        <a href="{{url('api/documentation')}}"> <h3>Documentacion API</h3></a>
+
+                        <div style="float: right;">
+                            Gracias por la oportunidad!
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
+        <footer class="bs-docs-footer" style="background: #F6F6F4; text-align:center">
+            <div class="container">
+                <address>
+                    <strong>Miguel Angel Castañeda Vasques</strong><br>
+                    <small><strong>Ingeniero de software</strong></small><br>
+                    <a href="mailto:miguelCasvas@gmail.com">miguelCasvas@gmail.com</a><br>
+                    <abbr title="Phone">P:</abbr> 319 5505453
+                </address>
+            </div>
+        </footer>
+
     </body>
 </html>

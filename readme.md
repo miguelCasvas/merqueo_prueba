@@ -1,51 +1,127 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+    <img src="https://image.flaticon.com/icons/png/512/1059/1059757.png" width="120"> Pruebas para aplicar a Back End
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## Especificaciones tecnicas
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Para dar solución al problema que se plantea use patron mvc haciendo desacoplamiento de capas de la siguiente manera:
+- <b>Capa de presentación</b> 
+        la cual la genera la herramienta Swagger en la que se usa la notación especificada por cada metodo invocado 
+        en los diferentes endPoints y de esta manera poder ver los recursos disponibles en la API
+- <b>Capa de Logica</b>
+        la cual la componen los controladores diseñados para los diferentes recursos generados (Productos / Proveedores / Ordenes / Reportes).
+        En esta capa desarrolle la logica necesaria para realizar validaciones y cargues correctos de las fuentes proporcionadas por cada uno de los componentes ya mecionados al sistema
+- <b>Capa de persistencia</b>
+        la cual la componen las entidades creadas por cada uno de los recursos definidos en la capa superior, así como también entidades adicionales
+        que considere necesarios para la creación de relaciones implicitas.
+        En esta capa desarrolle la logica para la abstracción de la data necesaria por cada 
+        uno de los requerimientos (reportes) solicitados en el pdf proporcionado
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+## Estructura de carpetas
 
-## Learning Laravel
+```
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+app
+|-- Http
+|   |-- Controllers
+|   |   |-- ProductsController.php
+|   |   |-- ProvidersController.php
+|   |   |-- OrdersController.php
+|   |   `-- ReportsController.php
+|   `--
+|-- Models
+|   |-- OrderModel.php
+|   |-- ProductModel.php
+|   |-- ProductOutOfInventaryModel.php
+|   |-- ProviderModel.php
+|   |-- RelOrdersProductsModel.php
+|   `-- RelProviderProductsModel.php
+config
+|-- app.php
+|-- database.php
+`-- l5-swagger.php
+databse
+|-- migrations
+|   |-- 2014_10_12_000000_create_users_table.php
+|   |-- 2014_10_12_100000_create_password_resets_table.php
+|   |-- 2019_07_20_042308_CreateEntityProducts.php
+|   |-- 2019_07_22_033044_CreateEntityProviders.php
+|   |-- 2019_07_22_034303_CreateEntityRelProviderProducts.php
+|   |-- 2019_07_23_000146_CreateEntityProductOutOfInventory.php
+|   |-- 2019_07_23_001936_CreateEntityOrders.php
+|   `-- 2019_07_23_002219_CreateEntityRelOrdersProducts.php
+docker
+|-- docker-compose.yml
+`-- merqueo.conf
+routes
+`-- api.php
+.env
+.env.example
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+********************************************************************************************
+** Nota 
+**    [
+**        Dada la cantidad de folders empleadas por el framework solo se mencionan 
+**        los archivos trabajados para la realización de la solución
+**    ]
+********************************************************************************************
 
-## Laravel Sponsors
+```
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+Como herramientas de apoyo para la ejeución de tareas rutinarias y ayuda de despliegues tanto de front como de back use:
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
+- [Composer](https://getcomposer.org/) para el manejo de paquetes y dependencias
+- FrameWork base [Laravel 5.4](https://laravel.com/docs/5.4).
+- Herramienta para la validación del API [DarkOnline / Swagger](https://github.com/zircote/swagger-php).
+- Repositorio Docker [php:5.6-apache](https://hub.docker.com/_/php?tab=description&page=1)
+- Repositorio Docker [mysql:5.7](https://hub.docker.com/_/mysql)
 
-## Contributing
+## Comandos a ejecutar para despliegue de proyecto sobre docker
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+```
+    Nota: se deben generar ejecución de codigo en el folder ./docker
+    
+    # Creación de dominio local
+    en el archivo /etc/host incluir la liena
+    127.0.0.1 pmerqueo.com
+    
+    # Creación de contenedores
+    $ sudo docker-compose up -d
 
-## Security Vulnerabilities
+    #### Si se ha generado con exito debe haber creado dos contenedores:
+    #### >> docker_servicio_php56_1 ==> este debe poder acceder por web atravez del puerto 8083
+    #### >> docker_servicio_mysql_1 ==> este debe proder acceder por conexion a mysql por puerto 3307
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+    # Acceso al contenedor de php
+    $ sudo docker exec -it docker_servicio_php56_1 /bin/bash
+    
+    # copiado de configuraciones merqueo.conf
+    $ cp /var/www/html/docker/merqueo.conf /etc/apache2/sites-enabled/merqueo.conf
+    
+    # inicio de servicio apache
+    $ a2enmod rewrite && service apache2 start
+    
+    # Descargue de librerias 
+    $ cd /var/www/html && composer install
+    
+    # copiado de archivo .env para framework laravel
+    $ cp /var/www/html/.env.example /var/www/html/.env 
 
-## License
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Link de acceso documentación api [pmerqueo.com:8083](http://pmerqueo.com:8083/api/documentation) <br>
+Link de acceso documentación api 2 [localhost:8083](http://localhost:8083/api/documentation)
+
+Link de acceso documentación [localhost/api/documentation](http://localhost/api/documentation)
+
+## Base de datos
+
+```
+
+    El script para la cargua de base de datos se encuentra en el folder
+    ./storage/app/recursos/dumpMerqueo.sql
+    
+    Nota: esta la opción de cargar las migraciones de LARAVEL
+
+```
