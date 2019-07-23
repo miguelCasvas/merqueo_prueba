@@ -22,26 +22,35 @@ class ProviderModel extends Model
     public function newLoad(array $providers)
     {
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        $this->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
         $providers = current($providers);
-        $providerSave = array();
+        $providersSave = array();// Arreglo para cargue de nuevos proveedores
+        $idsProvidersDelete = array();//Identificadores de proveedores a eliminar
+        $providersFtProducts = array();// Arreglo proveedores con productos
 
         foreach ($providers as $provider) {
-            $providerSave = [
-                'id' => $provider['id'],
-                'name' => $provider['name']
+
+            $idProvider = $provider['id'];
+            $nameProvider = $provider['name'];
+
+            $idsProvidersDelete[] = $idProvider;
+
+            $providersSave[] = [
+                'id' => $idProvider,
+                'name' => $nameProvider
             ];
 
-            
-            $this->create($providerSave);
+            foreach ($provider['products'] as $product) {
+                $providersFtProducts[$idProvider][] = $product['productId'];
+            }
 
         }
 
+        $this->whereIn('id', $idsProvidersDelete)->delete();
 
-        return true;
+        if($this->insert($providersSave) != true)
+            throw new \Exception('No se crearon los proveedores!', 500);
+
+        return $providersFtProducts;
     }
 
 }

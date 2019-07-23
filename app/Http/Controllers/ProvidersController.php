@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProviderModel;
+use App\Models\RelProviderProductsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,21 +30,25 @@ class ProvidersController extends Controller
     {
 
         $archivoBase = json_decode(Storage::disk('local')->get('recursos\providers-merqueo.json'), true);
-        $model = new ProviderModel();
+        $modelProvider = new ProviderModel();
+        $modelRelProvProd = new RelProviderProductsModel();
+
 
         try{
 
-            if($model->newLoad($archivoBase))
+            $productsByProvider = $modelProvider->newLoad($archivoBase);
+            $loadProductsByProvider = $modelRelProvProd->loadProductsByProvider($productsByProvider);
+
+            if($loadProductsByProvider)
                 return response()->json(['statusProcess' => 'Cargue correcto!']);
 
             return response()->json(['statusProcess' => 'Cargue no realizado!']);
 
-        }catch (Exception $e){
-            return response(null, 500)->json(['statusProcess' => $e->getMessage()]);
+        }catch (\Exception $e){
+            abort(500, $e->getMessage());
         }
 
     }
-
 
     /**
      * @SWG\Get(

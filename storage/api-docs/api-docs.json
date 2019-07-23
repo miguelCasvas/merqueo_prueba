@@ -15,7 +15,23 @@
         "https"
     ],
     "paths": {
-        "/orders/all": {
+        "/order/load": {
+            "post": {
+                "tags": [
+                    "3. Orders"
+                ],
+                "summary": "Cargar pedidos al sistema",
+                "responses": {
+                    "200": {
+                        "description": "Generar cargue correcto de pedidos."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/order/all": {
             "get": {
                 "tags": [
                     "3. Orders"

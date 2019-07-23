@@ -34,4 +34,12 @@ Route::group(['prefix' => 'v1'], function(){
 
     });
 
+
+    Route::group(['prefix' => 'order'], function(){
+
+        Route::post('load', 'OrdersController@load');
+        Route::get('all', 'OrdersController@all');
+
+    });
+
 });
